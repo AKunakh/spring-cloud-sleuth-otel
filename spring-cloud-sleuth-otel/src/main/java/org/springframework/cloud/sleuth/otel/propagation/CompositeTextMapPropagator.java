@@ -132,7 +132,7 @@ public class CompositeTextMapPropagator implements TextMapPropagator {
 			Context extractedContext = propagator.extract(context, carrier, getter);
 			Span span = Span.fromContextOrNull(extractedContext);
 			Baggage baggage = Baggage.fromContextOrNull(extractedContext);
-			if (span != null || baggage != null) {
+			if (span != null || (baggage != null && !baggage.isEmpty())) {
 				return extractedContext;
 			}
 		}
